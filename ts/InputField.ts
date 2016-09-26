@@ -50,6 +50,7 @@ module Fabrique {
 
         public blockInput: boolean = true;
 
+        public autoOpenKeyBoard = true;
         constructor(game:Phaser.Game, x:number, y:number, inputOptions:InputOptions = {}) {
             super(game, x, y);
 
@@ -228,7 +229,7 @@ module Fabrique {
                 this.domElement.blur();
             }
 
-            if (!this.game.device.desktop) {
+            if (!this.game.device.desktop && this.autoOpenKeyBoard) {
                 Plugins.InputField.KeyboardOpen = false;
                 Plugins.InputField.onKeyboardClose.dispatch();
             }
@@ -253,7 +254,7 @@ module Fabrique {
                 this.keyUpProcessor();
             }
 
-            if (!this.game.device.desktop) {
+            if (!this.game.device.desktop && this.autoOpenKeyBoard) {
                 Plugins.InputField.KeyboardOpen = true;
                 Plugins.InputField.onKeyboardOpen.dispatch();
             }
